@@ -22,43 +22,21 @@
 class plone (
   $enable_ldap     = false,
   $enable_indexers = false,
-  ) {
+  ) inherits plone::params {
 
-    # Pillow dependencies based on info supplied by
-    #  http://pillow.readthedocs.org/en/latest/installation.html#linux-installation
-    case $::osfamily {
-      'RedHat': {
-        $pillow = [
-          'libtiff-devel',
-          'libjpeg-turbo-devel',
-          'libzip-devel',
-          'freetype-devel',
-          'lcms2-devel',
-          'tcl-devel',
-          'tk-devel'
-        ]
-      }
-
-      'Debian': {
-        $pillow = [
-          'libtiff4-dev',
-          'libjpeg8-dev',
-          'zlib1g-dev',
-          'libfreetype6-dev',
-          'liblcms2-dev',
-          'libwebp-dev',
-          'tcl8.5-dev',
-          'tk8.5-dev',
-        ]
-      }
-
-      default: {
-        fail("Operating system ${::osfamily} is not supported!")
-      }
+    package { $pillow_deps:
+      alias   => 'pillow_deps',
+      ensure  => installed,
     }
 
-    package { $pillow:
-      ensure  => installed,
+    # Work around for bug in Ubuntu 14 see
+    # https://github.com/collective/buildout.python/issues/39
+    if ($::osfamily == 'Debian') and ($::lsbmajdistrelease == '14') {
+      file { '/usr/include/freetype':
+        ensure  => link,
+        target  => '/usr/include/freetype2',
+        require => 'pillow_deps',
+      }
     }
 
     # XML libraries required for lxml
