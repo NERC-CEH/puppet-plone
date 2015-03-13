@@ -25,7 +25,6 @@ class plone (
   ) inherits plone::params {
 
     package { $pillow_deps:
-      alias   => 'pillow_deps',
       ensure  => installed,
     }
 
@@ -35,7 +34,6 @@ class plone (
       file { '/usr/include/freetype':
         ensure  => link,
         target  => '/usr/include/freetype2',
-        require => Package['pillow_deps'],
       }
     }
 
