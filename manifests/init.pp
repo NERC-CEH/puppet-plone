@@ -35,7 +35,7 @@ class plone (
       file { '/usr/include/freetype':
         ensure  => link,
         target  => '/usr/include/freetype2',
-        require => 'pillow_deps',
+        require => Package['pillow_deps'],
       }
     }
 
