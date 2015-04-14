@@ -30,7 +30,7 @@ class plone (
 
     # Work around for bug in Ubuntu 14 see
     # https://github.com/collective/buildout.python/issues/39
-    if ($::osfamily == 'Debian') and ($::lsbmajdistrelease == '14') {
+    if ($::osfamily == 'Debian') and ($::lsbmajdistrelease =~ /^14/) {
       file { '/usr/include/freetype':
         ensure  => link,
         target  => '/usr/include/freetype2',
