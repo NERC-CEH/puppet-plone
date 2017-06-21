@@ -18,6 +18,8 @@ class plone::params {
                'liblcms2-dev','libwebp-dev','tcl8.5-dev','tk8.5-dev','python-tk'],
         /^14/ => ['libtiff5-dev','libjpeg8-dev','zlib1g-dev','libfreetype6-dev',
                'liblcms2-dev','libwebp-dev','tcl8.6-dev','tk8.6-dev','python-tk'],
+        /^16/ => ['libtiff5-dev','libjpeg8-dev','zlib1g-dev','libfreetype6-dev',
+               'liblcms2-dev','libwebp-dev','tcl8.6-dev','tk8.6-dev','python-tk'],
         }
     }
 
