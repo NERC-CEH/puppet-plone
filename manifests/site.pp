@@ -59,7 +59,7 @@ define plone::site(
       ensure    => file,
       owner     => $user,
       group     => $group,
-      mode      => 0755,
+      mode      => '0755',
       content   => template('plone/backuptemplate.erb')
     }
   }
