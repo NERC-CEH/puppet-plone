@@ -24,7 +24,7 @@ define plone::site(
   $user         = 'plone',
   $group        = 'plone',
   $config       = 'buildout.cfg',
-  $python       = '/usr/bin/python',
+  $python       = '/usr/bin/python2',
   $backup       = false,
   $backupname   = undef,
   $backupcopy   = false,
